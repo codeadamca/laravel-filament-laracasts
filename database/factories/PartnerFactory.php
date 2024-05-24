@@ -19,7 +19,7 @@ class PartnerFactory extends Factory
         return [
             'name' => fake()->name(),
             'url' => fake()->url(),
-            'image' => fake()->image('storage/app/public/partners',800,800),
+            'image' => fake()->imageURL(800,800),
         ];
     }
 }
