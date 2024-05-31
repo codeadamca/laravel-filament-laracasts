@@ -1,0 +1,21 @@
+created:
+    - database/factories/ConferenceFactory.php
+    - database/factories/VenueFactory.php
+    - database/factories/SpeakerFactory.php
+    - database/factories/TalkFactory.php
+    - database/migrations/2024_05_31_162003_create_conferences_table.php
+    - database/migrations/2024_05_31_162004_create_venues_table.php
+    - database/migrations/2024_05_31_162005_create_speakers_table.php
+    - database/migrations/2024_05_31_162006_create_talks_table.php
+    - database/migrations/2024_05_31_162007_create_conference_speaker_table.php
+    - database/migrations/2024_05_31_162008_create_conference_talk_table.php
+    - app/Models/Conference.php
+    - app/Models/Venue.php
+    - app/Models/Speaker.php
+    - app/Models/Talk.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    Conference: { name: string, description: string, start_date: datetime, end_time: datetime, satus: string, region: string, venue_id: 'unsignedInteger nullable', relationships: { belongsTo: Venue, belongsToMany: 'Speaker, Talk' } }
+    Venue: { name: string, city: string, country: string, postal_code: string, relationships: { hasMany: Conference } }
+    Speaker: { name: string, email: string, bio: text, twitter_handle: string, relationships: { belongsToMany: Conference } }
+    Talk: { title: string, abstract: text, speaker_id: 'unsignedInteger nullable', relationships: { belongsTo: Speaker, belongsToMany: Conference } }
