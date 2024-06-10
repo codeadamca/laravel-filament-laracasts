@@ -22,6 +22,7 @@ class Venue extends Model
         'city',
         'country',
         'postal_code',
+        'region',
     ];
 
     /**

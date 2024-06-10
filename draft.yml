@@ -4,7 +4,7 @@ models:
     description: string
     start_date: datetime
     end_time: datetime
-    satus: string
+    status: string
     region: string
     venue_id: unsignedInteger nullable
     relationships:

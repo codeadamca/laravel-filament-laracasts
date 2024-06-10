@@ -13,6 +13,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+use App\Enums\Region;
+
 class ConferenceResource extends Resource
 {
     protected static ?string $model = Conference::class;
@@ -44,17 +46,26 @@ class ConferenceResource extends Resource
                     ->required()
                     ->native( condition: false),
                 Forms\Components\Select::make('status')
-                ->options(options: [
-                    'draft' => 'Draft',
-                    'published' => 'Published',
-                    'archived' => 'Archived',
-                ])
+                    ->options(options: [
+                        'draft' => 'Draft',
+                        'published' => 'Published',
+                        'archived' => 'Archived',
+                    ])
                     ->required(),
                 Forms\Components\TextInput::make('region')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('region')
+                    ->live()
+                    ->enum(enum: Region::class)
+                    ->options(options: Region::class),
                 Forms\Components\Select::make('venue_id')
-                    ->relationship('venue', 'name'),
+                    ->searchable()
+                    ->preload()
+                    ->relationship(name: 'venue', titleAttribute: 'name', modifyQueryUsing: function(Builder $query, Forms\Get $get) {
+                        return $query->where(column: 'region', operator: $get(path: 'region'));
+                    }),
+                
             ]);
     }
 
@@ -72,7 +83,7 @@ class ConferenceResource extends Resource
                 Tables\Columns\TextColumn::make('end_time')
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('satus')
+                Tables\Columns\TextColumn::make('status')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('region')
                     ->searchable(),

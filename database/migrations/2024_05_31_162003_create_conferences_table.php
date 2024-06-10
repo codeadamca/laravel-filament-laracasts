@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_time');
             $table->boolean(column: 'in_published')->default(value: false);
-            $table->string('satus');
+            $table->string('status');
             $table->string('region');
             $table->foreignIdFor(model: Venue::class)->nullable();
             $table->timestamps();

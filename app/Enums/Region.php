@@ -5,8 +5,8 @@ namespace App\Enums;
 enum  Region: string
 {
     case US = 'US';
-    case EU = 'US';
+    case EU = 'EU';
     case AU = 'AU';
-    case India = 'US';
-    case Online = 'US';
+    case India = 'India';
+    case Online = 'Online';
 }

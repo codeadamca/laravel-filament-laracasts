@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Venue;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +21,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'thomasadam83@hotmail.com',
             'password' => bcrypt( value: 'password'),
         ]);
+
+        Venue::factory(10)->create();
     }
 }

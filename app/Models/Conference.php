@@ -23,9 +23,10 @@ class Conference extends Model
         'description',
         'start_date',
         'end_time',
-        'satus',
+        'status',
         'region',
         'venue_id',
+        'region',
     ];
 
     /**
