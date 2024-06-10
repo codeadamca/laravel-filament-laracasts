@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Venue;
+
 return new class extends Migration
 {
     /**
@@ -13,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('conferences', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string(column: 'name', length: 60);
             $table->string('description');
             $table->dateTime('start_date');
             $table->dateTime('end_time');
+            $table->boolean(column: 'in_published')->default(value: false);
             $table->string('satus');
             $table->string('region');
-            $table->foreignId('venue_id')->nullable();
+            $table->foreignIdFor(model: Venue::class)->nullable();
             $table->timestamps();
         });
     }

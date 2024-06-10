@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+use App\Enums\Region;
+
 class Conference extends Model
 {
     use HasFactory;
@@ -36,6 +38,7 @@ class Conference extends Model
         'start_date' => 'datetime',
         'end_time' => 'datetime',
         'venue_id' => 'integer',
+        'region' => Region::class,
     ];
 
     public function venue(): BelongsTo

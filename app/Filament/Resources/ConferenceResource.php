@@ -26,16 +26,30 @@ class ConferenceResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->required()
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'bulletList',
+                        'orderedList',
+                        'h2',
+                        'link',
+                    ])
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('start_date')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('end_time')
-                    ->required(),
-                Forms\Components\TextInput::make('satus')
                     ->required()
-                    ->maxLength(255),
+                    ->native( condition: false),
+                Forms\Components\DateTimePicker::make('end_time')
+                    ->required()
+                    ->native( condition: false),
+                Forms\Components\Select::make('status')
+                ->options(options: [
+                    'draft' => 'Draft',
+                    'published' => 'Published',
+                    'archived' => 'Archived',
+                ])
+                    ->required(),
                 Forms\Components\TextInput::make('region')
                     ->required()
                     ->maxLength(255),

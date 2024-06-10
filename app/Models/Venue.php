@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+use App\Enums\Region;
+
 class Venue extends Model
 {
     use HasFactory;
@@ -29,6 +31,7 @@ class Venue extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'region' => Region::class,
     ];
 
     public function conferences(): HasMany
